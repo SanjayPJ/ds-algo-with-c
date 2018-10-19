@@ -90,6 +90,10 @@ void push_linked_list(struct NODE** head_ref, int new_data){
 
 void insert_after(struct NODE* prev_node, int new_data){
 	
+	if (curr_node == NULL){
+		printf("THIS NODE CANT BE NULL\n");
+		return;
+	}
 	struct NODE* new_node = (struct NODE*) malloc(sizeof(struct NODE));
 	new_node->data = new_data;
 	new_node->next = prev_node->next;
