@@ -9,8 +9,10 @@ struct NODE{
 void push(struct NODE** head_ref, int new_data);
 void display(struct NODE* head);
 void delete_using_key(struct NODE** head_ref, int key);
+void delete_using_pos(struct NODE** head_ref, int pos);
 
 int main(void){
+	int pos;
 	struct NODE* head = NULL;
 	
 	push(&head, 1);
@@ -24,6 +26,8 @@ int main(void){
 	push(&head, 6);
 	display(head);
 	delete_using_key(&head, 3);
+	display(head);
+	delete_using_pos(&head, 2);
 	display(head);
 	return 0;
 }
@@ -69,6 +73,30 @@ void delete_using_key(struct NODE** head_ref, int key){
 				temp = temp->next;
 			}
 			prev->next = temp->next;
+			free(temp);
+		}
+	}
+}
+
+void delete_using_pos(struct NODE **head_ref, int pos){
+
+	struct NODE *temp = *head_ref, *after;
+	
+	int i;
+	
+	if(*head_ref != NULL){
+		if(pos == 1){
+			*head_ref = temp->next;
+			free(temp);
+		}else{
+			for(i = 0; temp != NULL && i < pos - 2; i++){
+				temp  = temp->next;
+			}
+			if(temp == NULL || temp->next == NULL){
+				return;
+			}
+			after = temp->next;
+			temp->next = after->next;
 			free(temp);
 		}
 	}
