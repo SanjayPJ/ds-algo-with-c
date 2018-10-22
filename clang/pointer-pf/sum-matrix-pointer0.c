@@ -27,6 +27,7 @@ void read_matrix(int matrix[10][10], int m, int n){
         }
     }
 }
+
 // for displaying the matrix
 void display_matrix(int matrix[10][10], int m, int n){
     printf("Entered matrix is :: \n");
